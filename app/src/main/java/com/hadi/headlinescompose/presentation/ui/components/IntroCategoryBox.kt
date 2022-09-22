@@ -13,9 +13,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.hadi.headlinescompose.R
 import com.hadi.headlinescompose.presentation.ui.theme.PrimaryRed
+import com.hadi.headlinescompose.presentation.ui.theme.RockWell
 
 @Composable
 fun IntroCategoryBox(
@@ -40,6 +42,7 @@ fun IntroCategoryBox(
                 .background(PrimaryRed)
                 .padding(4.dp),
             text = title,
+            fontFamily = RockWell,
             color = Color.Black
         )
 
