@@ -1,8 +1,11 @@
 package com.hadi.headlinescompose.presentation.ui.screen.intro
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -17,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.hadi.headlinescompose.R
 import com.hadi.headlinescompose.presentation.ui.components.IntroCategoryBox
 import com.hadi.headlinescompose.presentation.ui.theme.Grey
@@ -24,10 +28,13 @@ import com.hadi.headlinescompose.presentation.ui.theme.PrimaryRed
 import com.hadi.headlinescompose.presentation.ui.theme.RockWell
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    navController: NavController
+) {
 
     Column(
         modifier = Modifier
+            .verticalScroll(rememberScrollState())
             .fillMaxSize()
             .padding(top = 36.dp)
     ) {
@@ -122,8 +129,8 @@ fun SplashScreen() {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 120.dp, start = 8.dp, end = 8.dp)
-                .height(50.dp),
+                .padding(top = 128.dp, start = 8.dp, end = 8.dp, bottom = 12.dp)
+                .height(56.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = PrimaryRed
             ),

@@ -13,15 +13,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.compose.rememberNavController
 import com.hadi.headlinescompose.R
+import com.hadi.headlinescompose.presentation.ui.navigation.AppNavGraph
 import com.hadi.headlinescompose.presentation.ui.screen.intro.SplashScreen
 import com.hadi.headlinescompose.presentation.ui.theme.HeadLinesComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             HeadLinesComposeTheme {
+
+
+                val navController = rememberNavController()
                 // A surface container using the 'background' color from the theme
                 Box(modifier = Modifier) {
                     Image(
@@ -30,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         contentScale = ContentScale.Crop,
                         contentDescription = null)
 
-                    SplashScreen()
+                    AppNavGraph(navController = navController)
 
                 }
             }
