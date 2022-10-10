@@ -1,6 +1,7 @@
 package com.hadi.headlinescompose.presentation.ui.screen.news
 
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.hadi.headlinescompose.presentation.ui.theme.*
 
 @Composable
@@ -20,8 +22,8 @@ fun ShimmerEffect() {
     LazyColumn(
         contentPadding = PaddingValues(all = SMALL_PADDING),
         verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
-    ){
-        items(count = 2){
+    ) {
+        items(count = 2) {
             AnimatedShimmerItem()
         }
     }
@@ -40,40 +42,52 @@ fun AnimatedShimmerItem() {
                 easing = FastOutLinearInEasing
             ),
             repeatMode = RepeatMode.Reverse
-        ))
+        )
+    )
     ShimmerItem(alpha = alphaAnim)
 }
 
 
 @Composable
 fun ShimmerItem(alpha: Float) {
-    Surface(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(NEWS_ITEM_HEIGHT),
-        color = ShimmerLightGray
+            .height(NEWS_ITEM_HEIGHT)
+            .background(Color.White)
+            .padding(all = SMALL_PADDING)
     ) {
-        Row(
+
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(all = MEDIUM_PADDING),
+                .fillMaxHeight()
+                .weight(1f)
+                .background(ShimmerMediumGray)
+        )
+        Spacer(modifier = Modifier.width(SMALL_PADDING))
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .weight(2f)
         ) {
-            Surface(
+
+            androidx.compose.material.Surface(
                 modifier = Modifier
-                    .alpha(alpha = alpha)
-                    .fillMaxWidth(0.4f),
-                color = ShimmerMediumGray,
-                shape = RoundedCornerShape(size = SMALL_PADDING)
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .background(Color.Cyan),
+                color = ShimmerMediumGray
             ) {}
-            Spacer(modifier = Modifier.padding(all = SMALL_PADDING))
-            Surface(
+            Spacer(modifier = Modifier.height(SMALL_PADDING))
+            Box(
                 modifier = Modifier
-                    .alpha(alpha = alpha)
-                    .fillMaxWidth(0.6f),
-                color = ShimmerMediumGray,
-                shape = RoundedCornerShape(size = SMALL_PADDING)
-            ) {}
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .background(ShimmerMediumGray)
+            )
+
         }
+
     }
 }
 
