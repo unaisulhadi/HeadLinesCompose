@@ -12,7 +12,7 @@ interface NewsRepository {
 
     fun getEverything(): Flow<Resource<NewsResponse>>
 
-    suspend fun getNewsByCategory(category: String) : Flow<PagingData<NewsResponse.Article>>
+    fun getNewsByCategory(category: String) : Flow<PagingData<NewsResponse.Article>>
 
     fun searchNews(query : String) : Flow<PagingData<NewsResponse.Article>>
 

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.hadi.headlinescompose.R
 import com.hadi.headlinescompose.presentation.ui.components.IntroCategoryBox
+import com.hadi.headlinescompose.presentation.ui.navigation.Screen
 import com.hadi.headlinescompose.presentation.ui.theme.Grey
 import com.hadi.headlinescompose.presentation.ui.theme.PrimaryRed
 import com.hadi.headlinescompose.presentation.ui.theme.RockWell
@@ -135,7 +136,11 @@ fun SplashScreen(
                 backgroundColor = PrimaryRed
             ),
             shape = RectangleShape,
-            onClick = { }) {
+            onClick = {
+
+                navController.navigate(Screen.News.route)
+
+            }) {
             Text(
                 text = stringResource(R.string.start_reading),
                 fontFamily = RockWell,
