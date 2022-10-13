@@ -1,16 +1,13 @@
-package com.hadi.headlinescompose.presentation.ui.screen.news
+package com.hadi.headlinescompose.presentation.ui.components
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,7 +20,7 @@ fun ShimmerEffect() {
         contentPadding = PaddingValues(all = SMALL_PADDING),
         verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
     ) {
-        items(count = 2) {
+        items(count = 5) {
             AnimatedShimmerItem()
         }
     }
@@ -71,7 +68,7 @@ fun ShimmerItem(alpha: Float) {
                 .weight(2f)
         ) {
 
-            androidx.compose.material.Surface(
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
@@ -79,12 +76,15 @@ fun ShimmerItem(alpha: Float) {
                 color = ShimmerMediumGray
             ) {}
             Spacer(modifier = Modifier.height(SMALL_PADDING))
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .background(ShimmerMediumGray)
-            )
+            repeat(3) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(18.dp)
+                        .background(ShimmerMediumGray)
+                )
+                Spacer(modifier = Modifier.height(EXTRA_SMALL_PADDING))
+            }
 
         }
 
