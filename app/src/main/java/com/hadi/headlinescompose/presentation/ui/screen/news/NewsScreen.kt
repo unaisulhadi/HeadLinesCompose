@@ -29,6 +29,7 @@ fun NewsScreen(
     val news = newsViewModel.allNews.collectAsLazyPagingItems()
 
     Scaffold(
+        topBar = { NewsAppBar() },
         content = {
             ListContent(
                 news = news,

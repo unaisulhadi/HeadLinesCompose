@@ -130,7 +130,7 @@ fun SplashScreen(
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 128.dp, start = 8.dp, end = 8.dp, bottom = 12.dp)
+                .padding(top = 100.dp, start = 8.dp, end = 8.dp, bottom = 12.dp)
                 .height(56.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = PrimaryRed
