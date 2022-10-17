@@ -138,7 +138,7 @@ fun SplashScreen(
             shape = RectangleShape,
             onClick = {
 
-                navController.navigate(Screen.News.route)
+                navController.navigate(Screen.Home.route)
 
             }) {
             Text(

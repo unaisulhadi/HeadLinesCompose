@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.hadi.headlinescompose.data.model.NewsResponse
 import com.hadi.headlinescompose.domain.repository.NewsRepository
 import com.hadi.headlinescompose.utils.Resource
+import com.hadi.headlinescompose.utils.ResourceDrawable
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ class NewsViewModel @Inject constructor(
 
 
     val allNews = repository.getNewsByCategory("technology")
+
 
 
 }
