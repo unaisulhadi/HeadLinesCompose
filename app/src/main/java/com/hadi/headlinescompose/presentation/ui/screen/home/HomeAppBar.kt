@@ -22,10 +22,12 @@ fun HomeAppBar() {
 
     Column(
         modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 8.dp)
     ) {
 
         Box(
             modifier = Modifier
+                .padding(top = 36.dp)
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(Black)
@@ -34,7 +36,7 @@ fun HomeAppBar() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 8.dp, end = 8.dp),
+                .padding(top = 12.dp, start = 8.dp, end = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -72,6 +74,13 @@ fun HomeAppBar() {
             )
         }
 
+        Box(
+            modifier = Modifier
+                .padding(top = 12.dp)
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(Black)
+        )
 
     }
 

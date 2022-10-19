@@ -20,23 +20,17 @@ fun NewsScreen(
     val news = newsViewModel.allNews.collectAsLazyPagingItems()
 
     Scaffold(
-        topBar = { NewsAppBar() },
+        topBar = { NewsAppBar() {
+            navController.navigateUp()
+        } },
         backgroundColor = Color.Transparent,
         content = {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-            ) {
 
+            ListContent(
+                news = news,
+                navController = navController
+            )
 
-
-                ListContent(
-                    news = news,
-                    navController = navController
-                )
-
-            }
 
         }
     )

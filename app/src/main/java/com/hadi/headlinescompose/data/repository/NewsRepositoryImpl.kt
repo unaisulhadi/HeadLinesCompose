@@ -84,4 +84,8 @@ class NewsRepositoryImpl @Inject constructor(
             SearchNewsPagingSource(newsApi, query)
         }
     ).flow
+
+    override fun getNewsCategories() = listOf(
+        "Sports","Health","Entertainment","Science","Business","Technology"
+    )
 }

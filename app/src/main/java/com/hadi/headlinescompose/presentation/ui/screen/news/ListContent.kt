@@ -1,10 +1,15 @@
 package com.hadi.headlinescompose.presentation.ui.screen.news
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -21,6 +26,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.hadi.headlinescompose.data.model.NewsResponse
 import com.hadi.headlinescompose.presentation.ui.components.ShimmerEffect
+import com.hadi.headlinescompose.presentation.ui.navigation.Screen
 import com.hadi.headlinescompose.presentation.ui.theme.*
 
 @Composable
@@ -34,7 +40,7 @@ fun ListContent(
 
     if (result) {
         LazyColumn(
-            contentPadding = PaddingValues(all = SMALL_PADDING),
+            contentPadding = PaddingValues(horizontal = 8.dp),
             verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
         ) {
             items(
@@ -45,6 +51,12 @@ fun ListContent(
             ) { news ->
                 news?.let {
                     NewsItem(news = it, navController = navController)
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                            .height(1.dp)
+                            .background(Black))
                 }
             }
         }
@@ -93,44 +105,56 @@ fun NewsItem(
     navController: NavController,
 ) {
 
+    val matrix = ColorMatrix()
+    matrix.setToSaturation(0F)
+
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(NEWS_ITEM_HEIGHT),
+            .fillMaxWidth(fraction = 3f)
+            .height(NEWS_ITEM_HEIGHT)
+            .clickable {
+
+            },
     ) {
         AsyncImage(
             modifier = Modifier
                 .fillMaxHeight()
-                .weight(1f),
+                .weight(1f)
+                .padding(8.dp),
             contentScale = ContentScale.Crop,
             model = ImageRequest.Builder(LocalContext.current)
                 .data(data = news.urlToImage)
                 .placeholder(com.hadi.headlinescompose.R.drawable.newspaper)
                 .error(com.hadi.headlinescompose.R.drawable.newspaper)
                 .build(),
+            colorFilter = ColorFilter.colorMatrix(matrix),
             contentDescription = null
         )
-        Spacer(modifier = Modifier.padding(all = SMALL_PADDING))
         Column(
             modifier = Modifier
                 .fillMaxHeight()
                 .weight(2f),
         ) {
             Text(
-                modifier = Modifier.padding(top = 16.dp),
+                modifier = Modifier.padding(top = 8.dp, end = 4.dp),
                 text = news.title,
                 maxLines = 2,
                 lineHeight = 18.sp,
                 fontFamily = RockWell,
-                fontWeight = FontWeight.SemiBold
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                overflow = TextOverflow.Ellipsis,
             )
 
             Text(
-                modifier = Modifier.padding(top = 8.dp),
+                modifier = Modifier.padding(top = 6.dp, end = 4.dp),
                 text = news.content ?: "",
                 maxLines = 4,
+                color = Black.copy(alpha = 0.7f),
                 overflow = TextOverflow.Ellipsis,
-                lineHeight = 20.sp,
+                lineHeight = 18.sp,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
                 fontFamily = Calisto
             )
         }
@@ -149,7 +173,7 @@ fun NewsItemPreview() {
         description = "This is description This is description This is description This is description This is description",
         publishedAt = "SDJKSDHSJDHSJD",
         source = null,
-        title = "NEWS TITLE GOES HERE NEWS TITLE GOES HERE NEWS TITLE GOES HERE " ,
+        title = "NEWS TITLE GOES HERE NEWS TITLE GOES" ,
         url = "dsdsdsds",
         urlToImage = null
 

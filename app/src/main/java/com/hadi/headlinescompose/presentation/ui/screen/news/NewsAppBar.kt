@@ -2,6 +2,7 @@ package com.hadi.headlinescompose.presentation.ui.screen.news
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,12 +17,17 @@ import com.hadi.headlinescompose.presentation.ui.theme.Black
 import com.hadi.headlinescompose.presentation.ui.theme.RockWell
 
 @Composable
-fun NewsAppBar() {
-    Column(modifier = Modifier.fillMaxWidth()) {
+fun NewsAppBar(
+    onBackClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 8.dp, end = 8.dp, top = 36.dp)
+    ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -29,8 +35,11 @@ fun NewsAppBar() {
             Image(
                 modifier = Modifier
                     .padding(start = 8.dp)
-                    .height(40.dp)
-                    .width(30.dp),
+                    .height(30.dp)
+                    .width(30.dp)
+                    .clickable {
+                        onBackClick()
+                    },
                 painter = painterResource(id = com.hadi.headlinescompose.R.drawable.ic_back),
                 contentDescription = null
             )
@@ -44,7 +53,6 @@ fun NewsAppBar() {
 
             Box(
                 modifier = Modifier
-                    .padding(end =8.dp)
                     .height(50.dp)
                     .width(50.dp)
             )
@@ -53,7 +61,7 @@ fun NewsAppBar() {
 
         Box(
             modifier = Modifier
-                .padding(top = 4.dp, bottom = 6.dp, start = 8.dp, end = 8.dp)
+                .padding(top = 4.dp, start = 8.dp, end = 8.dp)
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(Black)
@@ -67,5 +75,5 @@ fun NewsAppBar() {
 @Preview
 @Composable
 fun NewsAppBarPreview() {
-    NewsAppBar()
+    NewsAppBar() {}
 }

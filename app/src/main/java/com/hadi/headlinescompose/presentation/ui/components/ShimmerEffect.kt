@@ -8,6 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,12 +52,13 @@ fun ShimmerItem(alpha: Float) {
         modifier = Modifier
             .fillMaxWidth()
             .height(NEWS_ITEM_HEIGHT)
-            .background(Color.White)
+            .background(Color.Transparent)
             .padding(all = SMALL_PADDING)
     ) {
 
         Box(
             modifier = Modifier
+                .alpha(alpha = alpha)
                 .fillMaxHeight()
                 .weight(1f)
                 .background(ShimmerMediumGray)
@@ -70,6 +72,7 @@ fun ShimmerItem(alpha: Float) {
 
             Surface(
                 modifier = Modifier
+                    .alpha(alpha = alpha)
                     .fillMaxWidth()
                     .height(50.dp)
                     .background(Color.Cyan),
@@ -79,6 +82,7 @@ fun ShimmerItem(alpha: Float) {
             repeat(3) {
                 Box(
                     modifier = Modifier
+                        .alpha(alpha = alpha)
                         .fillMaxWidth()
                         .height(18.dp)
                         .background(ShimmerMediumGray)

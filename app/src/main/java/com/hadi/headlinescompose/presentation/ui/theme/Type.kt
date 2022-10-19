@@ -11,8 +11,7 @@ import com.hadi.headlinescompose.R
 // Set of Material typography styles to start with
 
 val RockWell = FontFamily(
-    Font(R.font.rockwell_std_regular),
-    Font(R.font.rockwell_std_bold, FontWeight.Bold)
+    Font(R.font.rockwell_std_regular)
 )
 
 val Calisto = FontFamily(
