@@ -54,6 +54,7 @@ fun HomeScreen(
                         .padding(start = 8.dp, end = 8.dp, top = 12.dp),
                     categories = viewModel.categories
                 ) {
+
                     navController.navigate(Screen.News.route)
                 }
             }
