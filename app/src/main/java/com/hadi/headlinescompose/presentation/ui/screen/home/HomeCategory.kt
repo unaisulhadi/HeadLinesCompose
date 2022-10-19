@@ -1,6 +1,7 @@
 package com.hadi.headlinescompose.presentation.ui.screen.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -46,6 +47,9 @@ fun HomeCategory(
             categories.forEach { category ->
                 Spacer(modifier = Modifier.padding(horizontal = 4.dp))
                 Text(
+                    modifier = Modifier.clickable {
+                        onCategorySelected(category)
+                    },
                     text = category,
                     fontFamily = Calisto,
                     fontSize = 20.sp,
