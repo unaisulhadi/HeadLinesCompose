@@ -18,9 +18,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.hadi.headlinescompose.R
 import com.hadi.headlinescompose.presentation.ui.components.IntroCategoryBox
 import com.hadi.headlinescompose.presentation.ui.navigation.Screen
@@ -35,102 +37,107 @@ fun SplashScreen(
 
     Column(
         modifier = Modifier
-            .verticalScroll(rememberScrollState())
             .fillMaxSize()
             .padding(top = 36.dp)
     ) {
 
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .height(220.dp)) {
-
-            IntroCategoryBox(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(2f)
-                    .padding(start = 8.dp, top = 12.dp, end = 4.dp),
-                painter = painterResource(id = R.drawable.vintage_car),
-                title = "AUTOMOTIVE"
-            )
-
-            IntroCategoryBox(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(1f)
-                    .padding(start = 4.dp, top = 12.dp, end = 8.dp),
-                painter = painterResource(id = R.drawable.gas_station),
-                title = "BUSINESS"
-            )
-
-        }
-
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .height(220.dp)) {
-
-            IntroCategoryBox(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(1f)
-                    .padding(start = 8.dp, top = 8.dp, end = 4.dp),
-                painter = painterResource(id = R.drawable.model_woman),
-                title = "FASHION"
-            )
-
-            IntroCategoryBox(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(2f)
-                    .padding(start = 4.dp, top = 8.dp, end = 8.dp),
-                painter = painterResource(id = R.drawable.lifestyle),
-                title = "TECHNOLOGY"
-            )
-
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp, end = 8.dp, top = 24.dp)
+        Column(
+            modifier = Modifier.weight(weight = 1f)
         ) {
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .height(220.dp)) {
+
+                IntroCategoryBox(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(2f)
+                        .padding(start = 8.dp, top = 12.dp, end = 4.dp),
+                    painter = painterResource(id = R.drawable.vintage_car),
+                    title = "AUTOMOTIVE"
+                )
+
+                IntroCategoryBox(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(1f)
+                        .padding(start = 4.dp, top = 12.dp, end = 8.dp),
+                    painter = painterResource(id = R.drawable.gas_station),
+                    title = "BUSINESS"
+                )
+
+            }
+
+            Row(modifier = Modifier
+                .fillMaxWidth()
+                .height(220.dp)) {
+
+                IntroCategoryBox(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(1f)
+                        .padding(start = 8.dp, top = 8.dp, end = 4.dp),
+                    painter = painterResource(id = R.drawable.model_woman),
+                    title = "FASHION"
+                )
+
+                IntroCategoryBox(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(2f)
+                        .padding(start = 4.dp, top = 8.dp, end = 8.dp),
+                    painter = painterResource(id = R.drawable.lifestyle),
+                    title = "TECHNOLOGY"
+                )
+
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp, end = 8.dp, top = 24.dp)
+            ) {
+
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .height(2.dp)
+                    .background(Grey))
+
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .height(2.dp))
+
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .height(2.dp)
+                    .background(Grey))
+            }
+
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp, vertical = 12.dp),
+                text = stringResource(id = R.string.splash_desc),
+                fontFamily = RockWell,
+                fontWeight = FontWeight.Bold,
+                fontSize = 32.sp,
+                textAlign = TextAlign.Center
+            )
 
             Box(modifier = Modifier
-                .weight(1f)
+                .fillMaxWidth()
+                .padding(start = 8.dp, end = 8.dp)
                 .height(2.dp)
-                .background(Grey))
-
-            Box(modifier = Modifier
-                .weight(1f)
-                .height(2.dp))
-
-            Box(modifier = Modifier
-                .weight(1f)
-                .height(2.dp)
-                .background(Grey))
+                .background(Grey)
+            )
         }
 
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp, vertical = 12.dp),
-            text = stringResource(id = R.string.splash_desc),
-            fontFamily = RockWell,
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            textAlign = TextAlign.Center
-        )
 
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 8.dp, end = 8.dp)
-            .height(2.dp)
-            .background(Grey)
-        )
 
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 100.dp, start = 8.dp, end = 8.dp, bottom = 12.dp)
+                .padding(start = 12.dp, end = 12.dp, bottom = 12.dp)
                 .height(56.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = PrimaryRed
@@ -152,4 +159,11 @@ fun SplashScreen(
     }
 
 
+}
+
+
+@Preview
+@Composable
+fun SplashPreview(){
+    SplashScreen(navController = rememberNavController())
 }

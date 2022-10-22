@@ -71,7 +71,7 @@ fun DetailScreen(
                         color = Color.Black,
                         shape = RectangleShape
                     )
-                    .padding(8.dp)
+                    .padding(12.dp)
             ) {
                 Column(
                     modifier = Modifier
@@ -99,7 +99,7 @@ fun DetailScreen(
                         text = newsItem.author ?: "----",
                         color = Black,
                         lineHeight = 18.sp,
-                        fontSize = 15.sp,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         fontFamily = Calisto
                     )
@@ -122,7 +122,7 @@ fun DetailScreen(
                         text = newsItem.content ?: newsItem.description,
                         color = Black,
                         lineHeight = 22.sp,
-                        fontSize = 16.sp,
+                        fontSize = 17.sp,
                         fontWeight = FontWeight.Bold,
                         fontFamily = Calisto
                     )
