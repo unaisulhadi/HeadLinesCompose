@@ -50,13 +50,17 @@ fun ListContent(
                 }
             ) { news ->
                 news?.let {
-                    NewsItem(news = it, navController = navController)
+                    NewsItem(news = it) {
+                        navController.currentBackStackEntry?.arguments?.putParcelable("news", news)
+                        navController.navigate(Screen.Detail.route)
+                    }
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp)
                             .height(1.dp)
-                            .background(Black))
+                            .background(Black)
+                    )
                 }
             }
         }
@@ -96,90 +100,6 @@ fun handlePagingResult(
         }
     }
 
-
-}
-
-@Composable
-fun NewsItem(
-    news: NewsResponse.Article,
-    navController: NavController,
-) {
-
-    val matrix = ColorMatrix()
-    matrix.setToSaturation(0F)
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(fraction = 3f)
-            .height(NEWS_ITEM_HEIGHT)
-            .clickable {
-
-            },
-    ) {
-        AsyncImage(
-            modifier = Modifier
-                .fillMaxHeight()
-                .weight(1f)
-                .padding(8.dp),
-            contentScale = ContentScale.Crop,
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(data = news.urlToImage)
-                .placeholder(com.hadi.headlinescompose.R.drawable.newspaper)
-                .error(com.hadi.headlinescompose.R.drawable.newspaper)
-                .build(),
-            colorFilter = ColorFilter.colorMatrix(matrix),
-            contentDescription = null
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .weight(2f),
-        ) {
-            Text(
-                modifier = Modifier.padding(top = 8.dp, end = 4.dp),
-                text = news.title,
-                maxLines = 2,
-                lineHeight = 18.sp,
-                fontFamily = RockWell,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                overflow = TextOverflow.Ellipsis,
-            )
-
-            Text(
-                modifier = Modifier.padding(top = 6.dp, end = 4.dp),
-                text = news.content ?: "",
-                maxLines = 4,
-                color = Black.copy(alpha = 0.7f),
-                overflow = TextOverflow.Ellipsis,
-                lineHeight = 18.sp,
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = Calisto
-            )
-        }
-
-    }
-
-}
-
-
-@Preview
-@Composable
-fun NewsItemPreview() {
-    val news = NewsResponse.Article(
-        author = "Some Author",
-        content = "This is random content This is random content This is random content This is random content This is random content This is random content This is random content This is random content This is random content ",
-        description = "This is description This is description This is description This is description This is description",
-        publishedAt = "SDJKSDHSJDHSJD",
-        source = null,
-        title = "NEWS TITLE GOES HERE NEWS TITLE GOES" ,
-        url = "dsdsdsds",
-        urlToImage = null
-
-    )
-
-    NewsItem(news = news, navController = rememberNavController())
 
 }
 

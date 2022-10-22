@@ -124,9 +124,11 @@ fun HomeScreen(
 
             items(everything) { news ->
                 NewsItem(
-                    news = news,
-                    navController = navController
-                )
+                    news = news
+                ){
+                    navController.currentBackStackEntry?.arguments?.putParcelable("news", news)
+                    navController.navigate(Screen.Detail.route)
+                }
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
