@@ -4,6 +4,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
+import com.hadi.headlinescompose.presentation.ui.components.AnimatedShimmerItem
 import com.hadi.headlinescompose.presentation.ui.navigation.Screen
 import com.hadi.headlinescompose.presentation.ui.screen.news.NewsItem
 import com.hadi.headlinescompose.presentation.ui.theme.*
@@ -67,29 +69,45 @@ fun HomeScreen(
                         .height(1.dp)
                         .background(Black)
                 )
-                HorizontalPager(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp),
-                    state = pagerState,
-                    count = topHeadLines.size,
-                    verticalAlignment = Alignment.Top
-                ) { position ->
-
-                    NewsSlider(
+                Box {
+                    HorizontalPager(
                         modifier = Modifier
-                            .clickable(
-                                onClick = {
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        state = pagerState,
+                        count = topHeadLines.size,
+                        verticalAlignment = Alignment.Top
+                    ) { position ->
 
-                                }
-                            ),
-                        news = topHeadLines[position]
-                    )
+                        NewsSlider(
+                            modifier = Modifier
+                                .clickable(
+                                    onClick = {
+
+                                    }
+                                ),
+                            news = topHeadLines[position]
+                        )
+                    }
+                    if (state.value.isLoading) {
+                        AnimatedSliderShimmerItem()
+                    }
+                    if (!state.value.error.isNullOrEmpty()) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(200.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(text = state.value.error)
+                        }
+                    }
                 }
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 8.dp,start = 8.dp, end = 8.dp)
+                        .padding(bottom = 8.dp, start = 8.dp, end = 8.dp)
                         .height(1.dp)
                         .background(Black)
                 )
@@ -121,21 +139,37 @@ fun HomeScreen(
                 }
             }
 
+            // Shimmer for Home News
+            if (state.value.isLoading) {
+                items(8){
+                    AnimatedShimmerItem()
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                            .height(1.dp)
+                            .background(Black)
+                    )
+                }
 
-            items(everything) { news ->
+            }
+
+            itemsIndexed(everything) { index,news  ->
                 NewsItem(
                     news = news
-                ){
+                ) {
                     navController.currentBackStackEntry?.arguments?.putParcelable("news", news)
                     navController.navigate(Screen.Detail.route)
                 }
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                        .height(1.dp)
-                        .background(Black)
-                )
+                if(index < everything.lastIndex) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                            .height(1.dp)
+                            .background(Black)
+                    )
+                }
             }
 
         }
