@@ -8,8 +8,7 @@ import com.hadi.headlinescompose.domain.repository.NewsRepository
 import com.hadi.headlinescompose.utils.Resource
 import com.hadi.headlinescompose.utils.ResourceDrawable
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,14 +19,11 @@ class NewsViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    var newsCategory = "technology"
+    var allNews : Flow<PagingData<NewsResponse.Article>> = emptyFlow()
 
-    fun getNewsByCategory(category : String): Flow<PagingData<NewsResponse.Article>> {
-        return repository.getNewsByCategory(category)
+    fun getNewsByCategory(category : String) {
+        allNews = repository.getNewsByCategory(category)
     }
-
-    val allNews = repository.getNewsByCategory(newsCategory)
-
 
 
 }

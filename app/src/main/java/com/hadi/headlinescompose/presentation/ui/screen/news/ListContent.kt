@@ -93,7 +93,7 @@ fun handlePagingResult(
                 false
             }
             news.itemCount < 1 -> {
-                EmptyScreen()
+                //EmptyScreen()
                 false
             }
             else -> true

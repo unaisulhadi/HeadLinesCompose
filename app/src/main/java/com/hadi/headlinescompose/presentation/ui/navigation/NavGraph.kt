@@ -38,14 +38,8 @@ fun AppNavGraph(
         }
         composable(route = Screen.News.route) {
 
-            val category =
-                navController.previousBackStackEntry?.arguments?.getString("category") ?: "technology"
-            LaunchedEffect(key1 = category){
-
-            }
             NewsScreen(
-                navController = navController,
-                category = category
+                navController = navController
             )
         }
 

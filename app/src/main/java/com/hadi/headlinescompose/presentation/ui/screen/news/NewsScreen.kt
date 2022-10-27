@@ -12,26 +12,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.hadi.headlinescompose.data.model.NewsResponse
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.newSingleThreadContext
 
 @Composable
 fun NewsScreen(
     navController: NavController,
     newsViewModel: NewsViewModel = hiltViewModel(),
-    category : String
 ) {
 
-    Log.d("SelectedCategory", "NewsScreen: $category")
+    LaunchedEffect(key1 = true) {
+        val category =
+            navController.previousBackStackEntry?.arguments?.getString("category") ?: "technology"
+        newsViewModel.getNewsByCategory(category)
+        Log.d("SelectedCategory", "NewsScreen: $category")
+    }
 
     val news = newsViewModel.allNews.collectAsLazyPagingItems()
 
-//    val news = newsViewModel.getNewsByCategory(category).collectAsLazyPagingItems()
-
 
     Scaffold(
-        topBar = { NewsAppBar() {
-            navController.navigateUp()
-        } },
+        topBar = {
+            NewsAppBar() {
+                navController.navigateUp()
+            }
+        },
         backgroundColor = Color.Transparent,
         content = {
 
@@ -39,7 +48,6 @@ fun NewsScreen(
                 news = news,
                 navController = navController
             )
-
 
         }
     )
