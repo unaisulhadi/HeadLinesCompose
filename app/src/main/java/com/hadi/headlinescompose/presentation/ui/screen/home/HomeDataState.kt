@@ -5,7 +5,7 @@ import com.hadi.headlinescompose.data.model.NewsResponse
 data class HomeDataState(
     var isLoading: Boolean = false,
     val news: HomeData = HomeData(emptyList(), emptyList()),
-    val error: String = ""
+    val error: String? = ""
 )
 
 data class HomeData(

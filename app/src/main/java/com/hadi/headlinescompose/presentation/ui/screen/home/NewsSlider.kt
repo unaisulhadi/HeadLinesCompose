@@ -2,6 +2,7 @@ package com.hadi.headlinescompose.presentation.ui.screen.home
 
 import android.R
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +30,8 @@ import com.hadi.headlinescompose.utils.ResourceDrawable
 @Composable
 fun NewsSlider(
     modifier: Modifier =Modifier,
-    news: NewsResponse.Article
+    news: NewsResponse.Article,
+    onNewsClick : () -> Unit
 ) {
 
     val matrix = ColorMatrix()
@@ -39,6 +41,9 @@ fun NewsSlider(
         modifier = modifier
             .fillMaxWidth(fraction = 5f)
             .height(180.dp)
+            .clickable {
+                onNewsClick()
+            }
     ) {
 
         Column(
@@ -132,5 +137,5 @@ fun NewsSliderPreview() {
             url = "",
             urlToImage = "https://images.news18.com/ibnlive/uploads/2022/10/gamma-rays-166607875216x9.png",
         )
-    )
+    ){}
 }

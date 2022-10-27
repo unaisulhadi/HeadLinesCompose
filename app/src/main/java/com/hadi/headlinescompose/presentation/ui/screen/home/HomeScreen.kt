@@ -56,7 +56,10 @@ fun HomeScreen(
                         .padding(start = 8.dp, end = 8.dp, top = 12.dp),
                     categories = viewModel.categories
                 ) {
-
+                    navController.currentBackStackEntry?.arguments?.putString(
+                        "category",
+                        it
+                    )
                     navController.navigate(Screen.News.route)
                 }
             }
@@ -78,16 +81,16 @@ fun HomeScreen(
                         count = topHeadLines.size,
                         verticalAlignment = Alignment.Top
                     ) { position ->
-
+                        val news = topHeadLines[position]
                         NewsSlider(
-                            modifier = Modifier
-                                .clickable(
-                                    onClick = {
-
-                                    }
-                                ),
-                            news = topHeadLines[position]
-                        )
+                            news = news
+                        ) {
+                            navController.currentBackStackEntry?.arguments?.putParcelable(
+                                "news",
+                                news
+                            )
+                            navController.navigate(Screen.Detail.route)
+                        }
                     }
                     if (state.value.isLoading) {
                         AnimatedSliderShimmerItem()
@@ -99,7 +102,7 @@ fun HomeScreen(
                                 .height(200.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text(text = state.value.error)
+                            Text(text = state.value.error!!)
                         }
                     }
                 }
@@ -141,7 +144,7 @@ fun HomeScreen(
 
             // Shimmer for Home News
             if (state.value.isLoading) {
-                items(8){
+                items(8) {
                     AnimatedShimmerItem()
                     Box(
                         modifier = Modifier
@@ -154,14 +157,14 @@ fun HomeScreen(
 
             }
 
-            itemsIndexed(everything) { index,news  ->
+            itemsIndexed(everything) { index, news ->
                 NewsItem(
                     news = news
                 ) {
                     navController.currentBackStackEntry?.arguments?.putParcelable("news", news)
                     navController.navigate(Screen.Detail.route)
                 }
-                if(index < everything.lastIndex) {
+                if (index < everything.lastIndex) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()

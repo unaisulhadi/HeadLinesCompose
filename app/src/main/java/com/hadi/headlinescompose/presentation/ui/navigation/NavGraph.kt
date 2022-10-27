@@ -1,6 +1,7 @@
 package com.hadi.headlinescompose.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -36,7 +37,16 @@ fun AppNavGraph(
 
         }
         composable(route = Screen.News.route) {
-            NewsScreen(navController = navController)
+
+            val category =
+                navController.previousBackStackEntry?.arguments?.getString("category") ?: "technology"
+            LaunchedEffect(key1 = category){
+
+            }
+            NewsScreen(
+                navController = navController,
+                category = category
+            )
         }
 
     }

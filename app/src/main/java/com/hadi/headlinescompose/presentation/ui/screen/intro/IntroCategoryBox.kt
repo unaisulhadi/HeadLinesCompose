@@ -1,4 +1,4 @@
-package com.hadi.headlinescompose.presentation.ui.components
+package com.hadi.headlinescompose.presentation.ui.screen.intro
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
