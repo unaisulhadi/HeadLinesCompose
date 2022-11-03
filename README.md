@@ -10,6 +10,7 @@
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Jetpack Compose is Android’s modern toolkit for building native UI.
 - [News API](https://newsapi.org) - A simple, easy-to-use REST API that returns JSON search results for current and historic news articles.
+- [Clean Architecture](https://proandroiddev.com/android-clean-architecture-with-viewmodel-usecases-and-repositories-part-1-b9e63889a1aa) - Decoupling software code into presentation, domain and data layers to read, test and maintain easily.
 
 ## Download APK here 👇
 [![HeadLinesCompose](https://img.shields.io/badge/Archives-APK-black.svg?style=for-the-badge&logo=android)](https://github.com/unaisulhadi/Archives/raw/main/apk/Archives.apk)
