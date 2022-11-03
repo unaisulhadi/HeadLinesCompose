@@ -13,7 +13,7 @@
 - [Clean Architecture](https://proandroiddev.com/android-clean-architecture-with-viewmodel-usecases-and-repositories-part-1-b9e63889a1aa) - Decoupling software code into presentation, domain and data layers to read, test and maintain easily.
 
 ## Download APK here 👇
-[![HeadLinesCompose](https://img.shields.io/badge/Archives-APK-black.svg?style=for-the-badge&logo=android)](https://github.com/unaisulhadi/Archives/raw/main/apk/Archives.apk)
+[![HeadLinesCompose](https://img.shields.io/badge/HeadLines_Compose-APK-black.svg?style=for-the-badge&logo=android)](https://github.com/unaisulhadi/Archives/raw/main/apk/Archives.apk)
 
 ## ⌨️ Usage
 Just clone this repo and open in Android Studio (This app developed using Android Studio Chipmunk | 2021.2.1)
