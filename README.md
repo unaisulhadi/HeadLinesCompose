@@ -16,7 +16,11 @@
 [![HeadLinesCompose](https://img.shields.io/badge/HeadLines_Compose-APK-black.svg?style=for-the-badge&logo=android)]()
 
 ## ⌨️ Usage
-Just clone this repo and open in Android Studio (This app developed using Android Studio Chipmunk | 2021.2.1)
+- Clone this repo and open in Android Studio (This app developed using Android Studio Chipmunk | 2021.2.1)
+- Get your News API Key from NewsAPI.org, and put it in local.properties file like below
+```
+API_KEY=8b22e843acf846cxxxxxxxxxxxxxxxx
+```
 <br />
 
 ## 🔰 TODO
